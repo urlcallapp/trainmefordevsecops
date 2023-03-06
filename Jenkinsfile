@@ -21,7 +21,7 @@ pipeline {
          * docker build on the command line */
       steps{   
         script{
-          app = docker.build("urlcallapp/snake:${env.BUILD_NUMBER}")
+          app = docker.build("urlcallapp/snake:${env.BUILD_NUMBER}", "urlcallapp/snake:latest .")
         } 
         sh 'echo Build and Tag'
       }
@@ -30,8 +30,7 @@ pipeline {
       steps
       {
         script {
-            docker.withRegistry('https://registry.hub.docker.com','dockerhub') {
-            app.tag(["${env.BUILD_ID}","latest"])
+            docker.withRegistry('https://registry.hub.docker.com','dockerhub') {            
             app.push()
           }
         }
