@@ -21,7 +21,7 @@ pipeline {
          * docker build on the command line */
       steps{   
         script{
-          app = docker.build("urlcallapp/snake:${env.BUILD_NUMBER}")
+          app = docker.build("urlcallapp/snake:${env.BUILD_NUMBER}", "urlcallapp/snake:latest")
         } 
         sh 'echo Build and Tag'
       }
@@ -47,6 +47,8 @@ pipeline {
       steps
       {
          sh 'echo pulling image ...'
+         sh 'docker rm -f trainmefordevsecops_snake_1'
+         sh 'docker-compose up -d'
       }
     }    
     stage('DAST') {
