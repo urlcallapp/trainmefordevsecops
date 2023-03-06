@@ -19,7 +19,10 @@ pipeline {
     stage('Build-and-Tag') {
     /* This builds the actual image; synonymous to
          * docker build on the command line */
-      steps{    
+      steps{   
+        script{
+          app = docker.build("urlcallapp/snake:${env.BUILD_NUMBER}")
+        } 
         sh 'echo Build and Tag'
       }
     }
