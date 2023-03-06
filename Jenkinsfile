@@ -31,7 +31,7 @@ pipeline {
       {
         script {
             docker.withRegistry('https://registry.hub.docker.com','dockerhub') {
-            app.push("${env.BUILD_ID}:latest")
+            app.push("${env.BUILD_ID},latest")
           }
         }
         sh 'echo post to dockerhub repo'
