@@ -10,12 +10,16 @@ pipeline {
         checkout scmGit(branches: [[name: '*/email-notification']], extensions: [], userRemoteConfigs: [[credentialsId: 'ssh_gitlab_key', url: 'git@gitlab.com:urlcallapp/trainmefordevsecops.git']])
       }
     }
-    stage('SAST') {
+    stage('SAST - SonarQube Analysis') {
       steps
       {
-        sh 'echo SAST stage'
+        sh 'echo SAST stage with SonarQube'        
+        def scannerHome = tool 'SonarScanner';
+        withSonarQubeEnv() {
+          sh "${scannerHome}/bin/sonar-scanner"
+        }
       }
-    }
+    }    
     stage('Build-and-Tag') {
     /* This builds the actual image; synonymous to
          * docker build on the command line */
