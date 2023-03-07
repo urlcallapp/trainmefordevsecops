@@ -8,7 +8,7 @@ pipeline {
       {
         /* Let's make sure we have the repository cloned to our workspace */
         //checkout scmGit(branches: [[name: '*/email-notification']], extensions: [], userRemoteConfigs: [[credentialsId: 'ssh_gitlab_key', url: 'git@gitlab.com:urlcallapp/trainmefordevsecops.git']])
-        sh 'git clone from SCM inside jenkins'
+        sh 'echo git clone from SCM inside jenkins'
       }
     }
     stage('SAST - SonarQube Analysis') {
