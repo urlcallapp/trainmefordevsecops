@@ -14,10 +14,10 @@ pipeline {
       steps
       {
         sh 'echo SAST stage with SonarQube'        
-        def scannerHome = tool 'SonarScanner';
-        withSonarQubeEnv() {
-          sh "${scannerHome}/bin/sonar-scanner"
-        }
+        //def scannerHome = tool 'SonarScanner';
+        //withSonarQubeEnv() {
+        //  sh "${scannerHome}/bin/sonar-scanner"
+        //}
       }
     }    
     stage('Build-and-Tag') {
