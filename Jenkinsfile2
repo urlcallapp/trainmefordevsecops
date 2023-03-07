@@ -1,4 +1,7 @@
 node {
+    agent{
+        label 'docker'
+    }
   stage('SCM') {
     checkout scm
   }
